@@ -38,40 +38,27 @@ export default function DashboardScreen({ actions = [], onReset }) {
         .slice(0, 3)
 
     return (
-        <div className="min-h-screen bg-slate-50 pb-20">
-
-            <header className="bg-slate-900 px-8 py-5 flex items-center justify-between">
-                <div>
-                    <h1 className="text-2xl font-bold text-white">
-                        Executive Decision Briefing
-                    </h1>
-
-                    <p className="text-xs uppercase tracking-widest text-slate-400">
-                        Collectorate Intelligence System
-                    </p>
+        <div className="flex h-screen w-full flex-col bg-slate-50 text-slate-900 font-sans overflow-hidden">
+            <header className="flex-none h-14 bg-slate-900 text-white flex items-center justify-between px-6 border-b border-slate-800 shadow-sm z-20">
+                <div className="flex items-center gap-4">
+                    <div className="font-bold tracking-widest text-sm text-slate-200">NIRNAY AI</div>
+                    <div className="h-4 w-px bg-slate-700"></div>
+                    <div className="text-sm font-medium tracking-wide">FINALIZE</div>
                 </div>
-
-                <div className="flex gap-3">
-                    <span className="px-3 py-1 bg-slate-800 text-slate-300 rounded text-xs">
-                        STATUS: OPERATIONAL
-                    </span>
-
+                <div className="flex items-center gap-4 text-xs font-medium">
+                    <span className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-emerald-500"></div> System Online</span>
                     <button
                         onClick={onReset}
-                        className="bg-white px-4 py-1 rounded text-sm font-semibold"
+                        className="bg-slate-800 px-3 py-1.5 rounded text-slate-200 hover:bg-slate-700 transition text-xs font-semibold"
                     >
-                        Load New Case
+                        New Case
                     </button>
                 </div>
             </header>
 
-            <main className="max-w-6xl mx-auto px-5 py-8">
+            <main className="flex-1 overflow-y-auto max-w-5xl mx-auto w-full px-4 py-6">
 
-                <h2 className="text-4xl font-bold mb-8">
-                    What should be done immediately?
-                </h2>
-
-                <div className="grid md:grid-cols-2 gap-6 mb-12">
+                <div className="grid md:grid-cols-2 gap-4 mb-8">
 
                     {topCritical.map(action => (
                         <div

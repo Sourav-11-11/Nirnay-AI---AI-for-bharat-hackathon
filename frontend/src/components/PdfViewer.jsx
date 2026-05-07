@@ -12,21 +12,18 @@ function highlightText(text, snippet) {
     const cleanedText = normalizeText(text)
     const cleanedSnippet = normalizeText(snippet)
 
-    if (!cleanedText || !cleanedSnippet) {
+    if (!cleanedText || !cleanedSnippet || cleanedSnippet.length < 15) {
         return text
     }
 
-    if (cleanedSnippet === cleanedText) {
-        return `<mark class="pdf-highlight">${text}</mark>`
-    }
+    const genericWords = new Set(['court', 'late', 'petition', 'case', 'the', 'and', 'or', 'of', 'to', 'in', 'a', 'is', 'be', 'have', 'shall', 'may', 'shall'])
+    const isGeneric = (word) => genericWords.has(word) || word.length < 4
+    const snippetWords = cleanedSnippet.split(' ').filter(w => !isGeneric(w))
 
-    if (cleanedSnippet.includes(cleanedText) && cleanedText.length >= 4) {
-        return `<mark class="pdf-highlight">${text}</mark>`
-    }
+    if (snippetWords.length < 3) return text
 
-    const snippetWords = cleanedSnippet.split(' ').filter(Boolean)
-    const probe = snippetWords.slice(0, Math.min(8, snippetWords.length)).join(' ')
-    if (probe.length >= 8 && cleanedText.includes(probe)) {
+    const probe = snippetWords.slice(0, Math.min(5, snippetWords.length)).join(' ')
+    if (probe.length >= 12 && cleanedText.includes(probe)) {
         return `<mark class="pdf-highlight">${text}</mark>`
     }
 
@@ -84,7 +81,7 @@ export default function PdfViewer({ pdfPreviewUrl, selectedAction, page_number, 
             return
         }
 
-        pageElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        pageElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
         const timer = setTimeout(() => {
             const mark = pageElement.querySelector('mark.pdf-highlight')
@@ -92,9 +89,9 @@ export default function PdfViewer({ pdfPreviewUrl, selectedAction, page_number, 
                 mark.classList.remove('pdf-highlight-pulse')
                 void mark.offsetWidth
                 mark.classList.add('pdf-highlight-pulse')
-                mark.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                mark.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
             }
-        }, 300)
+        }, 200)
 
         return () => clearTimeout(timer)
     }, [currentPage, activeSnippet])
@@ -184,7 +181,7 @@ export default function PdfViewer({ pdfPreviewUrl, selectedAction, page_number, 
                                         pageRefs.current.delete(page)
                                     }
                                 }}
-                                className={`rounded-2xl border bg-white p-3 shadow-sm ${page === currentPage ? 'border-blue-300 ring-2 ring-blue-100' : 'border-slate-200'}`}
+                                className={`rounded-2xl border bg-white p-3 shadow-sm transition ${page === currentPage ? 'border-blue-500 ring-2 ring-blue-200 shadow-md' : 'border-slate-200 hover:border-slate-300'}`}
                             >
                                 <div className="mb-2 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                                     <span>Page {page}</span>
