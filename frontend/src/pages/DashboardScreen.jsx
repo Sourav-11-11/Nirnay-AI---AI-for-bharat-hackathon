@@ -65,7 +65,7 @@ export default function DashboardScreen({ actions = [], onReset }) {
                 </div>
             </header>
 
-            <main className="max-w-7xl mx-auto px-8 py-8">
+            <main className="max-w-6xl mx-auto px-5 py-8">
 
                 <h2 className="text-4xl font-bold mb-8">
                     What should be done immediately?

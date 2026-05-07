@@ -73,12 +73,12 @@ export default function ExtractionScreen({ actions, selectedActionId, onSelectAc
                 </div>
             </header>
 
-            {/* MAIN WORKSPACE: 65/35 Split */}
+            {/* MAIN WORKSPACE: 60/40 Split */}
             <div className="flex-1 flex overflow-hidden">
 
-                {/* LEFT SIDE (65%) */}
-                <div className="flex-[6.5] bg-slate-50/50 overflow-y-auto px-10 py-8 relative">
-                    <div className="max-w-4xl mx-auto space-y-10 pb-32">
+                {/* LEFT SIDE (60%) */}
+                <div className="flex-[6] bg-slate-50/50 overflow-y-auto px-6 py-6 relative">
+                    <div className="max-w-3xl mx-auto space-y-8 pb-32">
 
                         {/* CASE COMMAND CENTER */}
                         <div>
@@ -133,8 +133,8 @@ export default function ExtractionScreen({ actions, selectedActionId, onSelectAc
                     </div>
                 </div>
 
-                {/* RIGHT SIDE (35%) - Live PDF verification panel */}
-                <div className="flex-[3.5] bg-slate-200 border-l border-slate-300 relative shadow-[-10px_0_20px_-10px_rgba(0,0,0,0.05)] flex flex-col overflow-hidden">
+                {/* RIGHT SIDE (40%) - Live PDF verification panel */}
+                <div className="flex-[4] bg-slate-200 border-l border-slate-300 relative shadow-[-10px_0_20px_-10px_rgba(0,0,0,0.05)] flex flex-col overflow-hidden">
                     <div className="h-10 bg-slate-100 border-b border-slate-300 flex items-center justify-between px-4 flex-none shadow-sm z-10">
                         <span className="text-|l font-bold uppercase tracking-wider text-slate-600">Verification Source</span>
                         <span className="text-[10px] font-semibold text-slate-400">PDF.js Render Engine</span>
@@ -146,7 +146,7 @@ export default function ExtractionScreen({ actions, selectedActionId, onSelectAc
             </div>
 
             {/* BOTTOM STICKY APPROVAL BAR */}
-            <div className="fixed bottom-0 left-0 w-[65%] bg-white/90 backdrop-blur-xl border-t border-slate-200 p-4 flex items-center justify-between shadow-2xl z-30 transform transition-transform">
+            <div className="fixed bottom-0 left-0 w-[60%] bg-white/90 backdrop-blur-xl border-t border-slate-200 p-4 flex items-center justify-between shadow-2xl z-30 transform transition-transform">
                 <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
                     <span className="text-sm font-semibold text-slate-800">
